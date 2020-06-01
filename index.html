@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      
+      html {
+  scroll-behavior: smooth;
+}
+h1 {
+    animation-duration: 4s;
+    animation-name: slidein;
+    animation-iteration-count: 2;
+}
+
+@keyframes slidein {
+  0% {
+    margin-left: 0%;
+  }
+  50% {
+    margin-left: 300px;
+  }
+  100% {
+    margin-left: 0%;
+  }
+}
+svg-wrapper {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+	  margin: 0 auto;
+  width: 164px;  
+}
+.shape {
+  stroke-dasharray: 0 540;
+  stroke-dashoffset: -474;
+  stroke-width: 1px;
+  stroke: #19f6e8;
+  border-radius: 100%;
+  transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+}
+.text {
+  font-family: 'Roboto Condensed';
+  font-size: 22px;
+  line-height: 164px;
+  letter-spacing: 8px;
+  height:164px;
+  color: #fff;
+  top: 0;
+  position: absolute;
+  left:0;
+  width:164px;
+  text-align: center;
+}
+.svg-wrapper:hover .shape {
+  stroke-width: 2px;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 760;
+  border-radius: 100%;
+}
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello, it's Maisha!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+  </head>
+  <body>
+    <div class="columns">
+      <div class="column"></div>
+      <div class="column is-two-thirds">
+        <section class="section">
+          <div class="columns">
+            <div class="column"></div>
+            <div class="column">
+              <a href="work.html">Work</a>
+            </div>
+            <div class="column">
+              <a href="blogs.html">Blogs</a>
+            </div>
+            <div class="column">
+              <a href="index.html">About</a>
+            </div>
+            <div class="column"></div>
+          </div>
+          <section class="section">
+          </section>
+          <figure class="image is-fullwidth">
+            <img src="profile.png">
+          </figure>
+          <div class="column">
+            <section class="section">
+              <a href="#section2">
+                <center>
+                  <figure class="image is-24x24">
+                    <img src="scroll.png">
+                  </figure>
+                </center>
+              </a>
+            </section>
+        </div>
+        <hr>
+        <section class="section">
+          <div class= "columns">
+            <div class="column">
+              <figure class="image is-128x128">
+                <img class="is-rounded" src="https://doagahehoc242.cloudfront.net/uploads/artworks/8900/ec81fe63_">
+              </figure>
+            </div>
+            <div class= "column">
+              <p style="text-align:center;">
+                <h1 class= "title" id="section2">Hello.. 👋🏼</h1>
+                <h5>
+                  Hi! Im a first year student in the <b>University of waterloo</b> and am an aspiring Data Scientist. </br></br>I'm really interested in machine learning and it's uses in the medical industry and would love
+                  to experience that given the oppurtunity. </br></br>If I'm not coding then you'll usually see me drawing in my tablet!
+                </h5>
+              </p>
+            </div>
+          </div>
+          
+          <section class="section">
+            <hr>
+            <h2 class="title">Contact me</h2>
+            <div class="columns">
+              <div class="column">
+                <a href="#" class="border-button"> 
+                  <figure class="image is-96x96">
+                    <img src="linkedin1.png">
+                  </figure></a>
+              </div>
+              <div class="column">
+                <a href="#" class="border-button"> 
+                  <figure class="image is-96x96">
+                    <img src="github1.png">
+                  </figure> </a>
+              </div>
+              <div class="column"></div>
+              <div class="column"></div>
+              <div class="column"></div>
+              <div class="column"></div>
+              <div class="column"></div>
+            </div>
+
+          </section>
+        </section>
+      </div>
+      <div class="column"></div>
+    </div>
+  </body>
+</html>
