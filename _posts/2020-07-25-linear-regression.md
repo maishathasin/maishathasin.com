@@ -7,27 +7,27 @@ categories: machine learning
 
 # Linear Regression 
 
-    Linear regression is finding the linear relationship between two variables (x,y). Where x is the input variable and y is the result output and follows the equation y = mx + b where m is the gradient and b is the intercept. To summarise, we have a training data which shows the relationship between the X and Y values, and from the training set we will draw the relationship and then use this to predict Y values for unknown X values.
-    I will use gradient descent algorithm instead of the regression formula as it has a better optimization.
-                
+Linear regression is finding the linear relationship between two variables (x,y). Where x is the input variable and y is the result output and follows the equation y = mx + b where m is the gradient and b is the intercept. To summarise, we have a training data which shows the relationship between the X and Y values, and from the training set we will draw the relationship and then use this to predict Y values for unknown X values.
+I will use gradient descent algorithm instead of the regression formula as it has a better optimization.
+              
 ### GRADIENT DESCENT
-    The gradient descent algorithm is finding the minimum of a diffrentiable function. We apply the gradient descent algorithm by calculaing the partial derivative of the slope and the intercept and then update the slope and intercept in the gradient descent formula after each iteration.
+The gradient descent algorithm is finding the minimum of a diffrentiable function. We apply the gradient descent algorithm by calculaing the partial derivative of the slope and the intercept and then update the slope and intercept in the gradient descent formula after each iteration.
 
-    From highschool we have learned that to find the minima we need to calculate its derivative. And that is exactly what we are doing here
-    We are finding the minima of the intercept and slope so the loss function that we are using here which is mean squared error function is (ideally) 0. 
+From highschool we have learned that to find the minima we need to calculate its derivative. And that is exactly what we are doing here
+We are finding the minima of the intercept and slope so the loss function that we are using here which is mean squared error function is (ideally) 0. 
 
-    The loss equation looks like this:
+The loss equation looks like this:
 
 ![equation](/assets/images/equation.png)
-    
 
-    while the derivative in respect to m and c is 
+
+while the derivative in respect to m and c is 
 ![derivative](/assets/images/derivative.png)
 
 
-    Ideally we would split 80% of the data to train the function i.e use the algorithim on this data and use the rest 20% of the data to test it, however, for this program i am using all the data to train the function.
+Ideally we would split 80% of the data to train the function i.e use the algorithim on this data and use the rest 20% of the data to test it, however, for this program i am using all the data to train the function.
 
-    NOTE : We square the equation because we are trying to find the distance between the actual,correct point and the line that we have drawn to fit the points.
+NOTE : We square the equation because we are trying to find the distance between the actual,correct point and the line that we have drawn to fit the points.
 
 
 ```python
