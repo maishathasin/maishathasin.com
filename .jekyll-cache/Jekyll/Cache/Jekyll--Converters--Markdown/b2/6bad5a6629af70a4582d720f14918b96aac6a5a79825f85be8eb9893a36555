@@ -1,0 +1,10 @@
+I"�<h1 id="command-line-cli-based-todo-application-️">Command Line (CLI) based TODO Application ☑️</h1>
+
+<p>My first project to get started on python was a to-do list. It’s fully command line based and doesn’t have a GUI.</p>
+
+<p>It got me started with the basics of python and object-oriented programming.</p>
+
+<p>The challenging part of this project was getting used to classes and objects. it was difficult realising which attributes of a task should be initialized,but after this project my object oriented programming skills are stronger now !</p>
+
+<p><strong>You can find the code here:</strong> https://github.com/maishathasin/todo-cli</p>
+:ET

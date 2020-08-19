@@ -15,7 +15,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-07-25T13:42:19-04:00" />
 <script type="application/ld+json">
-{"datePublished":"2020-07-25T13:42:19-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/machine/learning/2020/07/25/linear-regression.html"},"description":"Linear Regression","@type":"BlogPosting","url":"http://localhost:4000/machine/learning/2020/07/25/linear-regression.html","headline":"Linear Regression with Gradient Descent!","dateModified":"2020-07-25T13:42:19-04:00","@context":"https://schema.org"}</script>
+{"headline":"Linear Regression with Gradient Descent!","dateModified":"2020-07-25T13:42:19-04:00","datePublished":"2020-07-25T13:42:19-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/machine/learning/2020/07/25/linear-regression.html"},"description":"Linear Regression","@type":"BlogPosting","url":"http://localhost:4000/machine/learning/2020/07/25/linear-regression.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="It's Maisha!" /></head>
 <body><header class="site-header" role="banner">
@@ -47,28 +47,25 @@
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="linear-regression">Linear Regression</h1>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Linear regression is finding the linear relationship between two variables (x,y). Where x is the input variable and y is the result output and follows the equation y = mx + b where m is the gradient and b is the intercept. To summarise, we have a training data which shows the relationship between the X and Y values, and from the training set we will draw the relationship and then use this to predict Y values for unknown X values.
-I will use gradient descent algorithm instead of the regression formula as it has a better optimization.
-</code></pre></div></div>
+<p>Linear regression is finding the linear relationship between two variables (x,y). Where x is the input variable and y is the result output and follows the equation y = mx + b where m is the gradient and b is the intercept. To summarise, we have a training data which shows the relationship between the X and Y values, and from the training set we will draw the relationship and then use this to predict Y values for unknown X values.
+I will use gradient descent algorithm instead of the regression formula as it has a better optimization.</p>
 
 <h3 id="gradient-descent">GRADIENT DESCENT</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The gradient descent algorithm is finding the minimum of a diffrentiable function. We apply the gradient descent algorithm by calculaing the partial derivative of the slope and the intercept and then update the slope and intercept in the gradient descent formula after each iteration.
+<p>The gradient descent algorithm is finding the minimum of a diffrentiable function. We apply the gradient descent algorithm by calculaing the partial derivative of the slope and the intercept and then update the slope and intercept in the gradient descent formula after each iteration.</p>
 
-From highschool we have learned that to find the minima we need to calculate its derivative. And that is exactly what we are doing here
-We are finding the minima of the intercept and slope so the loss function that we are using here which is mean squared error function is (ideally) 0. 
+<p>From highschool we have learned that to find the minima we need to calculate its derivative. And that is exactly what we are doing here
+We are finding the minima of the intercept and slope so the loss function that we are using here which is mean squared error function is (ideally) 0.</p>
 
-The loss equation looks like this:
-</code></pre></div></div>
+<p>The loss equation looks like this:</p>
 
 <p><img src="/assets/images/equation.png" alt="equation" /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while the derivative in respect to m and c is  ![derivative](/assets/images/derivative.png)
+<p>while the derivative in respect to m and c is 
+<img src="/assets/images/derivative.png" alt="derivative" /></p>
 
+<p>Ideally we would split 80% of the data to train the function i.e use the algorithim on this data and use the rest 20% of the data to test it, however, for this program i am using all the data to train the function.</p>
 
-Ideally we would split 80% of the data to train the function i.e use the algorithim on this data and use the rest 20% of the data to test it, however, for this program i am using all the data to train the function.
-
-NOTE : We square the equation because we are trying to find the distance between the actual,correct point and the line that we have drawn to fit the points.
-</code></pre></div></div>
+<p>NOTE : We square the equation because we are trying to find the distance between the actual,correct point and the line that we have drawn to fit the points.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span> <span class="c1">#a library that allows us to read CSV files and other table-like data structures

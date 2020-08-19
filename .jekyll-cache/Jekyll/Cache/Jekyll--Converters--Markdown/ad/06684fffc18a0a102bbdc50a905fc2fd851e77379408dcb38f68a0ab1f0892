@@ -1,0 +1,78 @@
+I"Ø%<h1 id="linear-regression">Linear Regression</h1>
+
+<p>Linear regression is finding the linear relationship between two variables (x,y). Where x is the input variable and y is the result output and follows the equation y = mx + b where m is the gradient and b is the intercept. To summarise, we have a training data which shows the relationship between the X and Y values, and from the training set we will draw the relationship and then use this to predict Y values for unknown X values.
+I will use gradient descent algorithm instead of the regression formula as it has a better optimization.</p>
+
+<h3 id="gradient-descent">GRADIENT DESCENT</h3>
+<p>The gradient descent algorithm is finding the minimum of a diffrentiable function. We apply the gradient descent algorithm by calculaing the partial derivative of the slope and the intercept and then update the slope and intercept in the gradient descent formula after each iteration.</p>
+
+<p>From highschool we have learned that to find the minima we need to calculate its derivative. And that is exactly what we are doing here
+We are finding the minima of the intercept and slope so the loss function that we are using here which is mean squared error function is (ideally) 0.</p>
+
+<p>The loss equation looks like this:</p>
+
+<p><img src="/assets/images/equation.png" alt="equation" /></p>
+
+<p>while the derivative in respect to m and c is 
+<img src="/assets/images/derivative.png" alt="derivative" /></p>
+
+<p>Ideally we would split 80% of the data to train the function i.e use the algorithim on this data and use the rest 20% of the data to test it, however, for this program i am using all the data to train the function.</p>
+
+<p>NOTE : We square the equation because we are trying to find the distance between the actual,correct point and the line that we have drawn to fit the points.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span> <span class="c1">#a library that allows us to read CSV files and other table-like data structures
+</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">)</span>
+
+<span class="c1"># Preprocessing Input data
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'gre.csv'</span><span class="p">)</span>
+<span class="n">data</span>
+</code></pre></div></div>
+<p><img src="/assets/images/data.png" alt="data" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="c1">#gets all the values in the 2nd column
+</span><span class="n">Y</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">8</span><span class="p">]</span><span class="c1">#gets all the values in the 8th column
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'GRE score'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Chance of getting into university %'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p><img src="/assets/images/scatter.png" alt="scatter" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="mf">0.0000001</span>  <span class="c1">#small learning rate
+</span><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span>  
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span> 
+
+<span class="c1"># Performing Gradient Descent 
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> 
+    <span class="n">Y_pred</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">c</span>  <span class="c1"># The current predicted value of Y
+</span>    <span class="n">D_m</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">X</span> <span class="o">*</span> <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">Y_pred</span><span class="p">))</span>  <span class="c1"># Derivative wrt m
+</span>    <span class="n">D_c</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">Y_pred</span><span class="p">)</span>  <span class="c1"># Derivative wrt c
+</span>    <span class="n">m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="n">L</span> <span class="o">*</span> <span class="n">D_m</span>  <span class="c1"># Update m
+</span>    <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">L</span> <span class="o">*</span> <span class="n">D_c</span>  <span class="c1"># Update c
+</span>
+
+</code></pre></div></div>
+<p>For this program we have just guessed  the learning rate and havent normalized it so the line will not accurately predict and have best fit line</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Y_pred</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">c</span>
+<span class="n">y_new</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="mi">338</span> <span class="o">+</span> <span class="n">c</span>
+<span class="n">y_test1</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="mi">292</span> <span class="o">+</span> <span class="n">c</span>
+<span class="c1">#here we are testing with two values and plotting the output as a red dot  
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">338</span><span class="p">,</span><span class="n">y_new</span><span class="p">,</span><span class="s">'ro'</span><span class="p">)</span> <span class="c1">#red dot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">292</span><span class="p">,</span><span class="n">y_test1</span><span class="p">,</span><span class="s">'ro'</span><span class="p">)</span> 
+
+
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span> 
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">)],</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">Y_pred</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">Y_pred</span><span class="p">)],</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">)</span>  <span class="c1"># regression line
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p><img src="/assets/images/final-regression.png" alt="regression" /></p>
+
+:ET
